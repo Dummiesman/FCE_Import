@@ -8,12 +8,12 @@
 # ##### END LICENSE BLOCK #####
 
 bl_info = {
-    "name": "NFS4 FCE Format",
+    "name": "NFS4/MCO FCE Format",
     "author": "Dummiesman",
     "version": (0, 0, 1),
     "blender": (2, 90, 1),
     "location": "File > Import-Export",
-    "description": "Import NFS4 FCE files",
+    "description": "Import NFS4/MCO FCE files",
     "warning": "",
     "doc_url": "https://github.com/Dummiesman/FCE_Import/",
     "tracker_url": "https://github.com/Dummiesman/FCE_Import/",
@@ -40,7 +40,7 @@ from bpy_extras.io_utils import (
 class ImportFCE(bpy.types.Operator, ImportHelper):
     """Import from NFS4 FCE file format"""
     bl_idname = "import_scene.fce"
-    bl_label = 'Import NFS4 FCE File'
+    bl_label = 'Import NFS4/MCO FCE File'
     bl_options = {'UNDO'}
 
     filename_ext = ".fce"
@@ -59,7 +59,7 @@ class ImportFCE(bpy.types.Operator, ImportHelper):
 
 # Add to a menu
 def menu_func_import_fce(self, context):
-    self.layout.operator(ImportFCE.bl_idname, text="NFS4 (.fce)")
+    self.layout.operator(ImportFCE.bl_idname, text="NFS4/MCO (.fce)")
 
 
 # Register factories

@@ -1,5 +1,5 @@
 # FCE_Import
-NFS4 FCE Import for Blender
+NFS4/MCO FCE Import for Blender
 
 Reads dummies, and parts. Does not read in extended info like object/face flags.
 

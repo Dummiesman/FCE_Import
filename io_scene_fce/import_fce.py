@@ -35,9 +35,20 @@ def get_tpage(fce_path, tpage_num):
     fce_name = os.path.splitext(base)[0]
     fce_dir = os.path.dirname(fce_path)
     
+    # NFS4
     tpage_file = fce_name + "{0:0=2d}".format(tpage_num) + ".tga"
     tpage_path = os.path.join(fce_dir, tpage_file)
 
+    if os.path.exists(tpage_path):
+        img = bpy.data.images.load(tpage_path)
+        if img is not None:
+            tpages[tpage_num] = img
+            img.alpha_mode = 'CHANNEL_PACKED'
+        return img
+    
+    # MCO
+    tpage_file = "{0:0=4d}".format(tpage_num) + ".bmp"
+    tpage_path = os.path.join(fce_dir, tpage_file)
     if os.path.exists(tpage_path):
         img = bpy.data.images.load(tpage_path)
         if img is not None:
@@ -221,10 +232,13 @@ def load_fce(filepath,
     tpage_materials = {}
 
     # check magic
-    header, unknown = struct.unpack('<LL', file.read(8))
-    if header != 0x00101014:
+    mco_header = 0x00101015
+    nfs4_header = 0x00101014
+    
+    magic, unknown = struct.unpack('<LL', file.read(8))
+    if magic != nfs4_header and magic != mco_header:
         file.close()
-        raise Exception("Not a valid FCE file. Header is incorrect.")
+        raise Exception("Not a valid FCE file. Magic is incorrect.")
     
     # read header
     fce_header = FCEHeader(file)
