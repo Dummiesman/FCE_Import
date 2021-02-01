@@ -176,7 +176,7 @@ def load_part(file, fce_path, fce_header, part_index):
             
             # create backface
             if backface_flag:
-                bverts = (bm.verts.new(verts[2].co), bm.verts.new(verts[1].co), bm.verts.new(verts[0].co))
+                bverts = (bm.verts.new(verts[2].co, verts[2]), bm.verts.new(verts[1].co, verts[1]), bm.verts.new(verts[0].co, verts[0]))
                 backface= bm.faces.new(bverts)
                 backface.smooth = True
                 
