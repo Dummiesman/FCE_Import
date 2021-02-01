@@ -179,7 +179,6 @@ def load_part(file, fce_path, fce_header, part_index):
                 bverts = (bm.verts.new(verts[2].co), bm.verts.new(verts[1].co), bm.verts.new(verts[0].co))
                 backface= bm.faces.new(bverts)
                 backface.smooth = True
-                backface.select = True
                 
                 for uv_loop in range(3):
                     backface.loops[3 - uv_loop - 1][uv_layer].uv = (face_uv[uv_loop], 1 - face_uv[uv_loop + 3])
