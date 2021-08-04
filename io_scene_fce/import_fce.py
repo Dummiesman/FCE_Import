@@ -221,7 +221,7 @@ def load_fce(filepath,
     if bpy.ops.object.select_all.poll():
         bpy.ops.object.select_all(action='DESELECT')
 
-    time1 = time.clock()
+    time1 = time.perf_counter()
     file = open(filepath, 'rb')
     
     # reset globals
@@ -251,7 +251,7 @@ def load_fce(filepath,
     for dummy_index in range(fce_header.dummy_count):
         load_dummy(file, fce_header, dummy_index)
         
-    print(" done in %.4f sec." % (time.clock() - time1))
+    print(" done in %.4f sec." % (time.perf_counter() - time1))
     
     file.close()
 
